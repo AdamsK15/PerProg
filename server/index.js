@@ -3,9 +3,10 @@ const express = require('express');
 const app = express();
 const massive = require('massive');
 const session = require('express-session');
-const bcrypt = require('bcryptjs');
+// const bcrypt = require('bcryptjs');
 // const signUp = require('./controllers/signUp-controller');
 const signUpCtrl = require('./controllers/signUp-controller');
+const authenticateUser = require('./middleware/authenticateUser');
 
 
 app.use(express.json());
@@ -25,6 +26,11 @@ app.post('/auth/signup', signUpCtrl.register);
 app.post('/auth/login', signUpCtrl.login);
 app.post('auth/logout', signUpCtrl.logout);
 app.get('/auth/user', signUpCtrl.getUser)
+
+app.get('/api/secret', authenticateUser, (req, res) => {
+    res.status(200).send("Here's the secret!")
+})
+
 
 // app.get()
 // app.put()
