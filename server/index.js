@@ -7,6 +7,7 @@ const session = require('express-session');
 // const signUp = require('./controllers/signUp-controller');
 const signUpCtrl = require('./controllers/signUp-controller');
 const authenticateUser = require('./middleware/authenticateUser');
+const mailCtrl = require('./controllers/mailController');
 
 
 app.use(express.json());
@@ -24,14 +25,14 @@ app.use(session({
 
 app.post('/auth/signup', signUpCtrl.register);
 app.post('/auth/login', signUpCtrl.login);
-app.post('auth/logout', signUpCtrl.logout);
+app.delete('auth/logout', signUpCtrl.logout);
 app.get('/auth/user', signUpCtrl.getUser)
 
-app.get('/api/secret', authenticateUser, (req, res) => {
-    res.status(200).send("Here's the secret!")
+app.get('/auth/secret', authenticateUser, (req, res) => {
+    res.status(200).send("U R Admin")
 })
 
-
+app.post('/api/email', mailCtrl.email);
 // app.get()
 // app.put()
 // app.delete()

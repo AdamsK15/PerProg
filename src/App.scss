@@ -1,0 +1,140 @@
+$company-color-primary:  rgb(166, 199, 226);
+$company-color-secondary: rgb(8, 255, 193);
+$hero-fade: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+
+* {
+  box-sizing: border-box;
+  font:'Roboto Slab', sans-serif;
+}
+
+.App {
+  text-align: center;
+}
+
+.NavBar {
+  /* position: fixed; */
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background:gray;
+
+  ul {
+    width: 35%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    font: 24px 'Roboto Slab', sans-serif,;
+  }
+
+  img {
+    height: 6%;
+    width: 6%;
+    background-color: $company-color-primary;
+    border-radius: 200px;
+  }
+
+}
+
+// .NavBar h1 {
+//   /* color: white; */
+//   font-size: 25px;
+// }
+
+// .NavBar ul {
+//   width: 35%;
+//   display: flex;
+//   align-items: flex-end;
+//   justify-content: space-between;
+//   font: 24px 'Roboto Slab', sans-serif,;
+// }
+
+// .NavBar img {
+//   height: 6%;
+//   width: 6%;
+//   background-color: $company-color-primary;
+//   border-radius: 200px;
+// }
+
+.Welcome {
+  /* margin: 10vh 0 0 0; */
+  height: 100vh;
+  width: 100%;
+  font-size: 50px;
+  /* background-color: teal; */
+  background-image:$hero-fade, url(img/heroImage2.jpg);
+  background-size: cover;
+  color: $company-color-primary;
+  background-position: center;
+  padding-top: 15%;
+  /* padding-right: 25%; */
+
+  button {
+    border-radius: 100%;
+    height: 5%;
+    width: 8%;
+    background-color: $company-color-secondary;
+  }
+  
+}
+
+// .WelcomeButton {
+//   border-radius: 100%;
+//   height: 5%;
+//   width: 8%;
+//   background-color: $company-color-secondary;
+// }
+
+.SignUp {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-image:$hero-fade, url(img/signUphero.jpg);
+  background-size: cover;
+  background-position: center;
+  padding-top: 15%;
+
+  form {
+    margin: 0 40% 0 40%;
+    height: 25%;
+    --bg-opacity: 1;
+    background-color: #fff;
+    background-color: rgba(255,255,255,var(--bg-opacity));
+  }
+  
+}
+
+.regSign {
+  margin: 0 40% 0 40%;
+  padding-top: 2%;
+  /* height: 100%; */
+  --bg-opacity: 1;
+  background-color: #fff;
+  background-color: rgba(255,255,255,var(--bg-opacity));
+}
+
+// .SignUp form {
+//   margin: 0 40% 0 40%;
+//   height: 25%;
+//   --bg-opacity: 1;
+//   background-color: #fff;
+//   background-color: rgba(255,255,255,var(--bg-opacity));
+// }
+
+.SignName {
+  margin: 5px;
+}
+
+.SignEmail {
+  margin: 5px;
+}
+
+.SignPassword {
+  margin: 5px;
+}
+
+.star {
+  color: gray;
+}
