@@ -20,17 +20,23 @@ class SignUp extends Component {
         this.setState({ mode: e.target.name })
     }
 
-    handleUsernameInput(value) {
-        this.setState({ username: value });
+    handleInput = e => {
+        const { name, value } = e.target;
+
+        this.setState({ [name]: value })
     }
 
-    handleEmailInput(value) {
-        this.setState({ email: value });
-    }
+    // handleUsernameInput(value) {
+    //     this.setState({ username: value });
+    // }
 
-    handlePasswordInput(value) {
-        this.setState({ user_password: value });
-    }
+    // handleEmailInput(value) {
+    //     this.setState({ email: value });
+    // }
+
+    // handlePasswordInput(value) {
+    //     this.setState({ user_password: value });
+    // }
 
     handleSubmit = () => {
         const { mode, username, email, user_password } = this.state;
@@ -41,7 +47,7 @@ class SignUp extends Component {
             .post(`/auth/${path}`, { username, email, user_password })
             .then(res => {
                 this.props.updateUser(res.data);
-                this.props.history.push('/posts');
+                this.props.history.push('/hh_users');
             })
             .catch(err => {
                 console.log(err);
@@ -91,9 +97,9 @@ class SignUp extends Component {
                     <button name='sign in' onClick={this.handleMode} disabled={mode === 'sign in'}>Sign In</button>
                 </div>
                 <form>
-                    <input className='SignName' placeholder='name' onChange={this.handleUsernameInput}></input><br />
-                    <input className='SignEmail' placeholder='email' onChange={this.handleEmailInput}></input><br />
-                    <input className='SignPassword' placeholder='password' onChange={this.handlePasswordInput}></input><br />
+                    <input className='SignName' placeholder='name' onChange={this.handleInput}></input><br />
+                    <input className='SignEmail' placeholder='email' onChange={this.handleInput}></input><br />
+                    <input className='SignPassword' placeholder='password' onChange={this.handleInput}></input><br />
                     <button onClick={this.handleSubmit}>Submit</button>
                 </form>
             </div>

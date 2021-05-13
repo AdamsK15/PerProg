@@ -36,7 +36,7 @@ class Mailer extends Component {
         return (
             <div>
                 <div>
-                    <h1>Email Kevin</h1>
+                    <h1>Email Kevon</h1>
                     <input placeholder='title' type="text" name='title' value={title} onChange={this.handleInput} />
                     <input placeholder='name' type="text" name='name' value={name} onChange={this.handleInput} />
                     <input placeholder='email' type="text" name='email' value={email} onChange={this.handleInput} />

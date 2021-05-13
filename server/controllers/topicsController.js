@@ -1,43 +1,43 @@
-const TopicsList = [
-    {
-        id: 1,
-        name: "Topic 1",
-        link: "https://www.hazeldenbettyford.org/thought-for-the-day/twenty-four-hours-a-day"
+// const TopicsList = [
+//     {
+//         id: 1,
+//         name: "Topic 1",
+//         link: "https://www.hazeldenbettyford.org/thought-for-the-day/twenty-four-hours-a-day"
 
-    },
-    {
-        id: 2,
-        name: "Topic 2",
-        link: "@placeholder"
-    },
-    {
-        id: 3,
-        name: "Topic 3",
-        link: "@placeholder"
-    },
-    {
-        id: 4,
-        name: "Topic 4",
-        link: "@placeholder"
-    },
-    {
-        id: 5,
-        name: "Topic 5",
-        link: "@placeholder"
-    },
-    {
-        id: 6,
-        name: "Topic 6",
-        link: "@placeholder"
-    },
-    {
-        id: 7,
-        name: "Topic 7",
-        link: "@placeholder"
-    }
-];
+//     },
+//     {
+//         id: 2,
+//         name: "Topic 2",
+//         link: "@placeholder"
+//     },
+//     {
+//         id: 3,
+//         name: "Topic 3",
+//         link: "@placeholder"
+//     },
+//     {
+//         id: 4,
+//         name: "Topic 4",
+//         link: "@placeholder"
+//     },
+//     {
+//         id: 5,
+//         name: "Topic 5",
+//         link: "@placeholder"
+//     },
+//     {
+//         id: 6,
+//         name: "Topic 6",
+//         link: "@placeholder"
+//     },
+//     {
+//         id: 7,
+//         name: "Topic 7",
+//         link: "@placeholder"
+//     }
+// ];
 
-let id = 8;
+// let id = 8;
 
 module.exports = {
     getTopics: (req, res) => {

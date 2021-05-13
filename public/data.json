@@ -1,0 +1,19 @@
+{
+    "TopicsList": [
+        {
+            "id": 1,
+            "name": "Topic 1",
+            "link": "https://www.hazeldenbettyford.org/thought-for-the-day/twenty-four-hours-a-day"
+        },
+        {
+            "id": 2,
+            "name": "Topic 2",
+            "link": "@placeholder"
+        },
+        {
+            "id": 3,
+            "name": "Topic 3",
+            "link": "@placeholder"
+        }
+    ]
+}

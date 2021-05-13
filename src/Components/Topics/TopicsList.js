@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { updateTopics } from '../../redux/reducers/topicsReducer';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-
+import ReactStars from "react-rating-stars-component";
 
 class TopicsList extends Component {
     constructor() {

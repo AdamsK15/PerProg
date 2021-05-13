@@ -3,6 +3,7 @@ import './App.scss';
 import { HashRouter } from 'react-router-dom';
 import routes from './routes';
 import NavBar from './Components/NavBar';
+// import apiTest from './Components/Topics/apiTest'
 
 class App extends Component {
 
@@ -11,6 +12,7 @@ class App extends Component {
       <HashRouter>
         <div className="App">
           <NavBar />
+          {/* {data.map(TopicsList)} */}
           {routes}
         </div>
       </HashRouter>
