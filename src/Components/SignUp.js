@@ -14,6 +14,9 @@ class SignUp extends Component {
             user_password: '',
             isAdmin: false
         };
+        this.register = this.register.bind(this);
+        this.login = this.login.bind(this);
+        this.logout = this.logout.bind(this);
     }
 
     handleMode = e => {
@@ -47,7 +50,7 @@ class SignUp extends Component {
             .post(`/auth/${path}`, { username, email, user_password })
             .then(res => {
                 this.props.updateUser(res.data);
-                this.props.history.push('/hh_users');
+                // this.props.history.push('/posts');
             })
             .catch(err => {
                 console.log(err);
@@ -61,7 +64,13 @@ class SignUp extends Component {
     }
 
     login() {
-
+        const { username, email, user_password } = this.state;
+        axios.post('/auth/login', { username, email, user_password })
+            .then(user => {
+                this.props.updateUser(user.data)
+                this.setState({ username: '', email: '', user_password: '' })
+            }).catch(err =>
+                alert(err.response.request.response))
     }
 
     register() {
@@ -79,7 +88,11 @@ class SignUp extends Component {
     }
 
     logout() {
-
+        axios.get('/auth/logout')
+            .then(() => {
+                this.props.updateUser({})
+            })
+            .catch((err) => console.log(err))
     }
 
 
@@ -87,7 +100,7 @@ class SignUp extends Component {
         const { mode } = this.state;
 
         // if (this.props.userReducer.user) {
-        //     return <Redirect to='/posts' />
+        //     return <Redirect to='/topics' />
         // }
 
         return (
@@ -99,8 +112,8 @@ class SignUp extends Component {
                 <form>
                     <input className='SignName' placeholder='name' onChange={this.handleInput}></input><br />
                     <input className='SignEmail' placeholder='email' onChange={this.handleInput}></input><br />
-                    <input className='SignPassword' placeholder='password' onChange={this.handleInput}></input><br />
-                    <button onClick={this.handleSubmit}>Submit</button>
+                    <input className='SignPassword' placeholder='password' onChange={this.handleInput} type='password'></input><br />
+                    <button type='submit' onClick={this.handleSubmit}>Submit</button>
                 </form>
             </div>
         )
@@ -109,4 +122,8 @@ class SignUp extends Component {
 
 }
 
-export default SignUp
+const mapStateToProps = reduxState => {
+    return reduxState;
+}
+
+export default connect(mapStateToProps, { updateUser })(SignUp)
