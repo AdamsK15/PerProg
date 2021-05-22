@@ -28,5 +28,7 @@ CREATE TABLE post(
 CREATE TABLE topics(
   topic_id serial PRIMARY KEY,
   user_id INT REFERENCES hh_users(id),
-  topics_text VARCHAR(255)
+  username VARCHAR(255),
+  topics_text VARCHAR(255),
+  rating INT
 );

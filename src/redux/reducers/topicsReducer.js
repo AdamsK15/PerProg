@@ -4,10 +4,10 @@ const initialState = {
 
 const UPDATE_TOPICS = 'UPDATE_TOPICS';
 
-export function updateTopics(topicObjArr) {
+export function updateTopics(topicsObjArr) {
     return {
         type: UPDATE_TOPICS,
-        payload: topicObjArr
+        payload: topicsObjArr
     }
 }
 

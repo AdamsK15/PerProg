@@ -41,46 +41,50 @@
 
 module.exports = {
     getTopics: (req, res) => {
-        res.status(200).send(TopicsList)
+        const db = req.app.get('db');
+
+        if (req.query.search) {
+            console.log('topics query hit');
+            const filterTopics = await db.topics.search_topics(req.query.search)
+
+            res.status(200).send(filterTopics);
+        } else {
+            const topics = await db.topics.get_all_topics();
+            res.status(200).send(topics)
+        }
+        // res.status(200).send(TopicsList)
     },
 
-    addTopic: (req, res) => {
-        // const { name, link } = req.body;
-        let {
-            id,
-            name,
-            link,
-        } = req.body;
-        let newTopic = {
-            id,
-            name,
-            link
-        };
-        id++
-        TopicsList.push(newTopic);
-        req.status(200).send(TopicsList)
+    addTopic: async (req, res) => {
+        const db = req.app.get('db');
+        const { user_id } = req.session.user;
+        // const {topic_text} = req.body;
+        const { username, topics_text, rating } = req.body;
+        // let {id, name, link,} = req.body;
+        const newTopic = await db.topics.add_topic(user_id, username, topics_text, rating);
+        if (newTopic) {
+            res.status(200).send(newTopic);
+        } else {
+            res.status(400).send('Topic could not be added')
+        }
+        // req.sendStatus(200);
     },
 
-    // editTopic: (req, res) => {
-    //     let { id } = req.params;
-    //     let {
-    //         name,
-    //         link
-    //     } = req.query;
+    editTopic: async (req, res) => {
+        const db = req.app.get('db');
+        const { updated_topic } = req.body;
+        const { user_id } = req.params;
 
-    //     let index = TopicsList.findIndex(topic => topic.id === +id);
+        await db.topics.edit_joke(user_id, updated_topic)
 
+        res.sendStatus(200);
+    },
+    deleteTopic: async (req, res) => {
+        const db = req.app.get('db');
+        const { user_id } = req.params;
 
-    //     TopicsList[index].name = name;
-    //     TopicsList[index].link = link;
+        await db.topics.delete_joke(user_id)
 
-    //     res.status(200).send(TopicsList);
-    // },
-
-    // deleteTopic: (req, res) => {
-    //     let { id } = req.params;
-    //     TopicsList.findIndex(topic => topic.id === +id);
-    //     index !== TopicsList.splice(index, 1);
-    //     res.status(200).send(TopicsList);
-    // }
+        res.sendStatus(200);
+    }
 }

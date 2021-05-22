@@ -1,3 +1,3 @@
 INSERT INTO topics
-(user_id, topics_text)
-VALUES ($1, $2);
+(user_id, username, topics_text, rating)
+VALUES ($1, $2, $3, $4);

@@ -7,6 +7,9 @@ class AddTopic extends Component {
         this.state = {
             addMode: false,
             newTopic: '',
+            username: '',
+            topics_text: '',
+            rating: 0
         }
     }
 
@@ -19,17 +22,19 @@ class AddTopic extends Component {
         this.setState({ addMode: !this.state.addMode })
     }
 
-    handleAddTopic = e => {
-        e.preventDefault();
-
+    handleAddTopic = () => {
+        // e.preventDefault();
+        const { username, topics_text, rating } = this.state;
         axios
-            .post('/api/topics', { topic_text: this.state.newTopic })
+            .post('/api/topics', { username, topics_text, rating })
             .then(() => {
                 this.setState({
-                    newTopic: ''
-                })
+                    username: '',
+                    topics_text: '',
+                    rating: 0
+                });
 
-                this.props.getTopics();
+                // this.props.getTopics();
             })
             .catch(err => console.log(err))
     }

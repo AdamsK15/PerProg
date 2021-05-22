@@ -1,15 +1,24 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import ReactStars from 'react-rating-stars-component';
 
 class Topics extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            editMode: false,
-            updatedTopic: ''
+            // editMode: false,
+            // updatedTopic: ''
+            username: '',
+            topics_text: '',
+            rating: 0
         }
     }
+
+    ratingChanged = (newRating) => {
+        this.setState({ rating: newRating });
+        console.log(newRating);
+    };
 
     handleChange = e => {
         const { name, value } = e.target;
@@ -25,20 +34,22 @@ class Topics extends Component {
         })
     }
 
-    handleEditTopicSubmit = (e) => {
-        e.preventDefault();
+    handleEditTopicSubmit = () => {
+        // e.preventDefault();
+        const { username, topics_text, rating } = this.state;
 
         axios
-            .put(`/api/topics/${this.props.topicObj.topic_id}`, { updated_topic: this.state.updatedTopic })
+            .post('/api/topics/', { username, topics_text, rating })
             .then(() => {
                 this.setState({
-                    editMode: false,
-                    updatedTopic: ''
-                })
+                    username: '',
+                    topics_text: '',
+                    rating: 0
+                });
 
-                this.props.getTopics();
-            })
-    }
+                // this.props.getTopics();
+            });
+    };
 
     cancelEditTopic = () => {
         const { editMode, updatedTopic } = this.state;
@@ -51,7 +62,7 @@ class Topics extends Component {
 
     deleteTopic = () => {
         axios
-            .delete(`/api/topics/${this.props.topicObj.topic_id}`)
+            .delete(`/api/topics/${this.props.topicsObj.topic_id}`)
             .then(() => {
                 this.props.getTopics();
             })
@@ -61,11 +72,16 @@ class Topics extends Component {
         const { topicsObj } = this.props;
         const { editMode, updatedTopic } = this.state;
 
+        console.log(topicsObj)
+        console.log(this.props.userReducer.user)
+
+        const { username, topics_text, rating } = this.state;
+
 
         return (
             <div>
                 <div>
-                    <p>{topicsObj.topic_text}</p>
+                    <p>topics</p>
                     <div>
                         {
                             editMode ? (
@@ -73,7 +89,7 @@ class Topics extends Component {
                             ) : (
                                 <>
                                     {
-                                        topicsObj.user_id === this.props.userReducer.user.user_id ? (
+                                        topicsObj === this.props.userReducer.user ? (
                                             <>
                                                 <button onClick={this.editTopicMode}>edit</button>
                                                 <button onClick={this.deleteTopic}>X</button>

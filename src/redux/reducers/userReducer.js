@@ -1,6 +1,7 @@
 // initial state
 const initialState = {
-    user: null
+    user: null,
+    isLoggedIn: false
 }
 
 // action types

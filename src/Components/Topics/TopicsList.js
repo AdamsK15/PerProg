@@ -49,11 +49,11 @@ class TopicsList extends Component {
     }
 
     render() {
-        const topicsMapped = this.props.topicsReducer.topics.map((topicObj, i) => <TopicItem key={i} topicObj={topicObj} getTopics={this.getTopics} />)
+        const topicsMapped = this.props.topicsReducer.topics.map((topicsObj, i) => <Topics key={i} topicsObj={topicsObj} getTopics={this.getTopics} />)
 
-        if (!this.props.userReducer.user) {
-            return <Redirect to='/' />
-        }
+        // if (!this.props.userReducer.user) {
+        //     return <Redirect to='/' />
+        // }
 
         return (
             <section>
