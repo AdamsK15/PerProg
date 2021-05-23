@@ -6,6 +6,7 @@ import Forum from './Components/Forum';
 import Welcome from './Components/Welcome';
 import Mailer from './Components/Mailer';
 import TopicsList from './Components/Topics/TopicsList';
+import Twilio from './Components/Twilio/Twilio';
 
 export default (
     <Switch>
@@ -14,5 +15,6 @@ export default (
         <Route path='/forum' component={Forum} />
         <Route path='/signUp' component={SignUp} />
         <Route path='/mailer' component={Mailer} />
+        <Route path='/sms' component={Twilio} />
     </Switch>
 )

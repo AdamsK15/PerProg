@@ -26,6 +26,7 @@ function NavBar(props) {
                 <Link to='/forum'><li>Forum</li></Link>
                 <Link to='/signUp'><li>Sign Up</li></Link>
                 <Link to='/mailer'><li>Mailer</li></Link>
+                <Link to='/sms'><li>SMS</li></Link>
                 <button onClick={handleLogout}>Logout</button>
             </ul>
         </div>

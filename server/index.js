@@ -9,6 +9,7 @@ const signUpCtrl = require('./controllers/signUp-controller');
 const { checkUser } = require('./middleware/authenticateUser')
 // const authenticateUser = require('./middleware/authenticateUser');
 const mailCtrl = require('./controllers/mailController');
+const smsCtrl = require('./controllers/smsController');
 
 
 app.use(express.json());
@@ -52,6 +53,8 @@ app.post('/api/email', mailCtrl.email);
 // app.get()
 // app.put()
 // app.delete()
+
+app.post('/api/sendSMS', smsCtrl.sendSMS);
 
 // massive({
 //     connectionString: CONNECTION_STRING,
