@@ -8,17 +8,13 @@ class Topics extends Component {
         super(props);
         this.state = {
             // editMode: false,
-            // updatedTopic: ''
+            // updatedTopic: '',
             username: '',
             topics_text: '',
             rating: 0
         }
     }
 
-    ratingChanged = (newRating) => {
-        this.setState({ rating: newRating });
-        console.log(newRating);
-    };
 
     handleChange = e => {
         const { name, value } = e.target;
@@ -39,7 +35,7 @@ class Topics extends Component {
         const { username, topics_text, rating } = this.state;
 
         axios
-            .post('/api/topics/', { username, topics_text, rating })
+            .post('/topics/add', { username, topics_text, rating })
             .then(() => {
                 this.setState({
                     username: '',
@@ -47,7 +43,7 @@ class Topics extends Component {
                     rating: 0
                 });
 
-                // this.props.getTopics();
+                this.props.getTopics();
             });
     };
 
@@ -62,7 +58,7 @@ class Topics extends Component {
 
     deleteTopic = () => {
         axios
-            .delete(`/api/topics/${this.props.topicsObj.topic_id}`)
+            .delete(`/topics/${this.props.topicsObj.topic_id}`)
             .then(() => {
                 this.props.getTopics();
             })
@@ -81,7 +77,9 @@ class Topics extends Component {
         return (
             <div>
                 <div>
-                    <p>topics</p>
+                    <p>Submited By: {topicsObj.username}</p>
+                    <p>{topicsObj.topics_text}</p>
+                    <ReactStars {...topicsObj.rating} />
                     <div>
                         {
                             editMode ? (

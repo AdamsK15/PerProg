@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import AddTopic from './AddTopic';
 import Topics from './Topics';
 import { connect } from 'react-redux';
@@ -21,7 +21,7 @@ class TopicsList extends Component {
 
     getTopics = () => {
         axios
-            .get(`/api/topics`)
+            .post(`/topics/get`)
             .then(res => {
                 this.props.updateTopics(res.data)
             })
@@ -32,7 +32,7 @@ class TopicsList extends Component {
             this.getTopics();
         } else {
             axios
-                .get(`/api/topics?search=${this.state.search}`)
+                .get(`/topics/get?search=${this.state.search}`)
                 .then(res => {
                     this.props.updateTopics(res.data)
 
@@ -57,6 +57,7 @@ class TopicsList extends Component {
 
         return (
             <section>
+                {/* <Topics /> */}
                 <AddTopic getTopics={this.getTopics} />
 
                 <div>

@@ -4,10 +4,10 @@ const app = express();
 const massive = require('massive');
 const session = require('express-session');
 // const bcrypt = require('bcryptjs');
-// const signUp = require('./controllers/signUp-controller');
 const signUpCtrl = require('./controllers/signUp-controller');
 const { checkUser } = require('./middleware/authenticateUser')
 // const authenticateUser = require('./middleware/authenticateUser');
+const topicsCtrl = require('./controllers/topicsController');
 const mailCtrl = require('./controllers/mailController');
 const smsCtrl = require('./controllers/smsController');
 
@@ -44,6 +44,9 @@ app.post('/auth/register', signUpCtrl.register);
 app.post('/auth/login', signUpCtrl.login);
 app.delete('auth/logout', signUpCtrl.logout);
 app.get('/auth/session', checkUser, signUpCtrl.getSession)
+
+app.get('/topics/get', topicsCtrl.getTopics);
+app.post('/topics/add', topicsCtrl.addTopic);
 
 // app.get('/auth/secret', authenticateUser, (req, res) => {
 //     res.status(200).send("U R Admin")

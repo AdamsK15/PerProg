@@ -1,9 +1,10 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
+import ReactStars from 'react-rating-stars-component';
 
 class AddTopic extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             addMode: false,
             newTopic: '',
@@ -12,6 +13,11 @@ class AddTopic extends Component {
             rating: 0
         }
     }
+
+    ratingChanged = (newRating) => {
+        this.setState({ rating: newRating });
+        console.log(newRating);
+    };
 
     handleChange = e => {
         const { name, value } = e.target;
@@ -26,7 +32,7 @@ class AddTopic extends Component {
         // e.preventDefault();
         const { username, topics_text, rating } = this.state;
         axios
-            .post('/api/topics', { username, topics_text, rating })
+            .post('/topics/add', { username, topics_text, rating })
             .then(() => {
                 this.setState({
                     username: '',
@@ -34,13 +40,13 @@ class AddTopic extends Component {
                     rating: 0
                 });
 
-                // this.props.getTopics();
+                this.props.getTopics();
             })
             .catch(err => console.log(err))
     }
 
     render() {
-        const { addMode, newTopic } = this.state;
+        const { addMode, newTopic, username, topics_text, rating } = this.state;
 
         return (
             <section>
@@ -52,9 +58,13 @@ class AddTopic extends Component {
                 {
                     addMode ? (
                         <form onSubmit={this.handleAddTopic}>
-                            <input name='newTopic' placeholder='suggest new topic' onChange={this.handleChange} value={newTopic} />
+                            <input name='newTopic' placeholder='topic category' onChange={this.handleChange} value={newTopic} />
 
-                            <button type='submit'>submit</button>
+                            <input name='newTopic' placeholder='add link' onChange={this.handleChange} value={topics_text} />
+
+                            <ReactStars name='rating' count={5} onChange={this.ratingChanged} type='number' value={rating} />
+
+                            <button type='submit' onClick={this.handleAddTopic}>submit</button>
                         </form>
                     ) : null
                 }

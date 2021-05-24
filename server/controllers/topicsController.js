@@ -40,7 +40,7 @@
 // let id = 8;
 
 module.exports = {
-    getTopics: (req, res) => {
+    getTopics: async (req, res) => {
         const db = req.app.get('db');
 
         if (req.query.search) {
