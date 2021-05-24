@@ -11,6 +11,8 @@ const topicsCtrl = require('./controllers/topicsController');
 const mailCtrl = require('./controllers/mailController');
 const smsCtrl = require('./controllers/smsController');
 
+const path = require('path')
+
 
 app.use(express.json());
 
@@ -58,6 +60,14 @@ app.post('/api/email', mailCtrl.email);
 // app.delete()
 
 app.post('/api/sendSMS', smsCtrl.sendSMS);
+
+// hosting
+app.use(express.static(__dirname + '/../build'));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
+// hosting
 
 // massive({
 //     connectionString: CONNECTION_STRING,

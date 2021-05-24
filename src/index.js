@@ -3,18 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { HashRouter } from 'react-router-dom';
+import { HashRouter, BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+// hosting
+const Router = process.env.NODE_ENV === 'development' ? HashRouter : BrowserRouter;
+// hosting
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <HashRouter>
+    <Router>
       <Provider store={store}>
         <App />
       </Provider>
-    </HashRouter>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

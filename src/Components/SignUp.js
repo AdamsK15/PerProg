@@ -45,10 +45,10 @@ class SignUp extends Component {
     handleSubmit = () => {
         const { mode, username, email, user_password } = this.state;
 
-        const path = mode === 'register' ? 'register' : 'login';
+        const lane = mode === 'register' ? 'register' : 'login';
 
         axios
-            .post(`/auth/${path}`, { username, email, user_password })
+            .post(`/auth/${lane}`, { username, email, user_password })
             .then(res => {
                 this.setState({ username, email, user_password })
                 this.props.updateUser(res.data);
